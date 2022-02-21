@@ -1,0 +1,36 @@
+service: image-resizer-js
+frameworkVersion: '2 || 3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+  stage: prod
+  region: ap-southeast-1
+
+  environment:
+    BUCKET: ${env:BUCKET}
+    REGION: ${env:REGION}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+      Resource: "arn:aws:s3:::${env:BUCKET}"
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+      Resource: "arn:aws:s3:::${env:BUCKET}"
+    - Effect: "Allow"
+      Action:
+        - "xray:PutTraceSegments"
+        - "xray:PutTelemetryRecords"
+      Resource:
+        - "*"
+
+functions:
+  resizer:
+    handler: handler.resizer
+    events:
+      - http:
+          path: resize
+          method: get

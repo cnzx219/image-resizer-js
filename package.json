@@ -1,0 +1,12 @@
+{
+    "name": "image-resizer-js",
+    "version": "1.0.0",
+    "description": "Serverless image resizing",
+    "main": "resize.js",
+    "dependencies": {
+      "aws-sdk": "^2.1077.0",
+      "serverless-plugin-tracing": "^2.0.0",
+      "sharp": "^0.26.3"
+    }
+  }
+  
