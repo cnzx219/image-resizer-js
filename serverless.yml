@@ -9,6 +9,8 @@ provider:
   region: ap-southeast-1
 
   environment:
+    AWS_KEY_ID: ${env:AWS_KEY_ID}
+    SECRET_ACCESS_KEY: ${env:SECRET_ACCESS_KEY}
     BUCKET: ${env:BUCKET}
     REGION: ${env:REGION}
   iamRoleStatements:
@@ -29,7 +31,7 @@ provider:
 
 functions:
   resizer:
-    handler: handler.resizer
+    handler: resize.handler
     events:
       - http:
           path: resize

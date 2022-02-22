@@ -1,11 +1,15 @@
 const stream = require('stream')
 const AWS = require('aws-sdk')
 const S3 = new AWS.S3({
-  signatureVersion: 'v4'
+  signatureVersion: 'v4',
+  accessKeyId: process.env.AWS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: process.env.REGION,
 })
 const sharp = require('sharp')
 const BUCKET = process.env.BUCKET
 const URL = `http://${process.env.BUCKET}.s3-website.${process.env.REGION}.amazonaws.com`
+
 
 // create the read stream abstraction for downloading data from S3
 const readStreamFromS3 = ({ Bucket, Key }) => {
