@@ -13,6 +13,7 @@ provider:
     SECRET_ACCESS_KEY: ${env:SECRET_ACCESS_KEY}
     BUCKET: ${env:BUCKET}
     REGION: ${env:REGION}
+    URL_LOC: ${env:URL_LOC}
   iamRoleStatements:
     - Effect: "Allow"
       Action:

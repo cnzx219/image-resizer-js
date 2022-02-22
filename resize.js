@@ -8,8 +8,8 @@ const S3 = new AWS.S3({
 })
 const sharp = require('sharp')
 const BUCKET = process.env.BUCKET
-const URL = `http://${process.env.BUCKET}.s3-website.${process.env.REGION}.amazonaws.com`
-
+//const URL = `http://${process.env.BUCKET}.s3-website.${process.env.REGION}.amazonaws.com`
+const URL = process.env.URL_LOC
 
 // create the read stream abstraction for downloading data from S3
 const readStreamFromS3 = ({ Bucket, Key }) => {
@@ -41,6 +41,11 @@ exports.handler = async (event) => {
   const width = parseInt(match[1], 10)
   const height = parseInt(match[2], 10)
   const originalKey = match[3]
+  if (width != 108 || height != 80) {
+    return {
+      statusCode: '404',
+    };
+  }
   const newKey = '' + width + 'x' + height + '/' + originalKey
   const imageLocation = `${URL}/${newKey}`
 
