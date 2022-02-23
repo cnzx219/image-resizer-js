@@ -41,11 +41,11 @@ exports.handler = async (event) => {
   const width = parseInt(match[1], 10)
   const height = parseInt(match[2], 10)
   const originalKey = match[3]
-  if (width != 108 || height != 80) {
-    return {
-      statusCode: '404',
-    };
-  }
+//   if (width != 108 || height != 80) {
+//     return {
+//       statusCode: '404',
+//     };
+//   }
   const newKey = '' + width + 'x' + height + '/' + originalKey
   const imageLocation = `${URL}/${newKey}`
 
